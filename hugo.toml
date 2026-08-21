@@ -1,0 +1,8 @@
+baseURL = "https://hugohsjo.github.io/"
+languageCode = "ko-kr"
+title = "휴고스튜디오"
+theme = "PaperMod"
+
+[params]
+  description = "생각을 앱으로 만드는 작업실"
+  defaultTheme = "auto"
