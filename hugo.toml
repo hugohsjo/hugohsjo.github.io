@@ -1,8 +1,88 @@
 baseURL = "https://hugohsjo.github.io/"
 languageCode = "ko-kr"
-title = "휴고스튜디오"
+title = "휴고조 Hugo Jo"
 theme = "PaperMod"
+timeZone = "Asia/Seoul"
+enableRobotsTXT = true
+
+[pagination]
+pagerSize = 10
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
 
 [params]
-  description = "생각을 앱으로 만드는 작업실"
-  defaultTheme = "auto"
+description = "기술은 수단, 목적은 언제나 삶. 삶의 질을 높이는 것을 만드는 과정의 기술 기록."
+defaultTheme = "auto"
+ShowReadingTime = true
+ShowBreadCrumbs = true
+ShowPostNavLinks = true
+ShowCodeCopyButtons = true
+ShowRssButtonInSectionTermList = true
+
+[params.assets]
+favicon = "favicon-32.png"
+apple_touch_icon = "apple-touch-icon.png"
+
+[params.homeInfoParams]
+Title = "휴고조 Hugo Jo"
+Content = "기술은 수단입니다. 목적은 언제나 삶입니다. 삶의 질을 높이는 것을, 오늘도 만듭니다."
+
+[[params.socialIcons]]
+name = "youtube"
+url = "https://youtube.com/@hugohsjo"
+
+[[params.socialIcons]]
+name = "instagram"
+url = "https://instagram.com/hugohsjo"
+
+[[params.socialIcons]]
+name = "threads"
+url = "https://threads.net/@hugohsjo"
+
+[[params.socialIcons]]
+name = "x"
+url = "https://x.com/hugohsjo"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/hugohsjo"
+
+[[params.socialIcons]]
+name = "linkedin"
+url = "https://linkedin.com/in/hugohsjo"
+
+[[params.socialIcons]]
+name = "rss"
+url = "index.xml"
+
+[menu]
+[[menu.main]]
+identifier = "connect"
+name = "Connect"
+url = "/connect/"
+weight = 10
+
+[[menu.main]]
+identifier = "build"
+name = "Build"
+url = "/build/"
+weight = 20
+
+[[menu.main]]
+identifier = "life"
+name = "Life"
+url = "/life/"
+weight = 30
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 40
+
+[[menu.main]]
+identifier = "search"
+name = "검색"
+url = "/search/"
+weight = 50
