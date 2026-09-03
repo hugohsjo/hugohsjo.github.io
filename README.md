@@ -117,9 +117,10 @@ git add -A && git commit -m "post: 글 제목" && git push
 - 축마다 허브(총정리) 글 1편을 만들고 모든 글과 상호 내부 링크
 - 영상 임베드: `{{</* youtube 영상ID */>}}` 숏코드 사용
 
-## 6. 도메인 전환 시 바꿀 것 (hugojo.com 연결 시점)
+## 6. 도메인 연결 현황 (hugojo.com)
 
-1. `hugo.toml`의 `baseURL`을 `https://hugojo.com/`으로
-2. `static/CNAME` 파일 생성, 내용은 `hugojo.com` 한 줄
-3. GitHub 저장소 Settings → Pages → Custom domain에 hugojo.com 입력, Enforce HTTPS 체크
-4. 등록기관 DNS: apex에 A 레코드 4개 (185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153)
+- [x] `hugo.toml`의 `baseURL` = `https://hugojo.com/` (2026-09-02)
+- [x] `static/CNAME` = `hugojo.com`
+- [x] GitHub Pages Custom domain = hugojo.com (API로 설정 완료)
+- [ ] 등록기관(호스팅케이알) DNS: apex A 레코드 4개를 GitHub Pages IP로 교체 (185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153), www는 CNAME으로 hugohsjo.github.io
+- [ ] DNS 전파 후 GitHub Pages에서 Enforce HTTPS 켜기 (인증서 자동 발급 뒤 가능)
