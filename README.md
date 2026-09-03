@@ -1,11 +1,31 @@
 # hugojo.com 블로그 저장소 가이드
 
-휴고조 Hugo Jo 블로그의 소스 저장소다. 이 문서 하나로 글 작성부터 발행까지 혼자 할 수 있도록 구조, 역할, 커스터마이징 현황을 전부 기록한다.
+휴고조 Hugo Jo 블로그의 소스 저장소다. 글 작성부터 발행까지 혼자 할 수 있도록 구조, 규칙, 운영을 문서 4종으로 나누어 기록한다.
+
+| 문서 | 내용 | 언제 보나 |
+|---|---|---|
+| [README](README.md) (이 문서) | 개요, 빠른 시작, 디렉토리 요약 | 처음 |
+| [ARCHITECTURE](ARCHITECTURE.md) | 전체 구성도, 요청·빌드 시퀀스, 핵심 개념, 모듈 구조, 의존성 | 구조를 이해할 때 |
+| [CONVENTIONS](CONVENTIONS.md) | 글 발행 흐름, front matter, 이미지, 문체, Git 규칙 | 글을 쓸 때 |
+| [DEPLOYMENT](DEPLOYMENT.md) | 워크플로, 도메인·DNS, HTTPS, 장애 대응, 새 머신 세팅 | 배포·문제가 생겼을 때 |
 
 - 로컬 경로: `~/Library/CloudStorage/Dropbox/Studio/hugojo.com`
 - 원격: github.com/hugohsjo/hugohsjo.github.io
-- 공개 주소: https://hugohsjo.github.io (도메인 연결 후 https://hugojo.com)
+- 공개 주소: https://hugojo.com (보조 https://hugohsjo.github.io)
 - 스택: Hugo(정적 생성기) + PaperMod 테마 + GitHub Actions + GitHub Pages
+
+## 0. 빠른 시작 (글 한 편 발행하기)
+
+```mermaid
+flowchart LR
+    A["hugo new build/slug.md"] --> B["front matter·본문 작성"]
+    B --> C["hugo server -D<br/>미리보기"]
+    C --> D["draft 제거"]
+    D --> E["git add / commit / push"]
+    E --> F["약 1분 뒤<br/>hugojo.com 반영"]
+```
+
+상세 절차와 규칙은 [CONVENTIONS](CONVENTIONS.md).
 
 ## 1. 발행 흐름 (핵심 원리)
 
