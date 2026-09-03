@@ -164,7 +164,7 @@ sequenceDiagram
 ```
 
 - 발급은 자동이며 DNS 전파 후 통상 1시간 이내, 최대 24시간
-- **커스텀 도메인은 반드시 Settings → Pages 화면에서 Save로 등록한다.** API로만 설정하면 "DNS Check in Progress"에서 멈춰 인증서 발급이 시작되지 않는다(2026-09-03 실제 발생). 멈췄으면 Remove → **5분 이상 기다린 뒤** → 재입력 → Save로 검사를 다시 돌린다. 지우자마자 다시 넣으면 DNS 검사는 통과해도 인증서 요청이 큐에 들어가지 않을 수 있다(2026-09-03 실제 발생: 5분 대기 후 재등록하자 "TLS certificate is being provisioned 1 of 3"이 처음 나타남)
+- **커스텀 도메인은 반드시 Settings → Pages 화면에서 Save로 등록한다.** API로만 설정하면 "DNS Check in Progress"에서 멈춰 인증서 발급이 시작되지 않는다(2026-09-03 실제 발생). 멈췄으면 Remove → 재입력 → Save로 검사를 다시 돌린다. 이후 "DNS check successful"이 떠도 인증서 요청이 큐에 들어가 "TLS certificate is being provisioned (1 of 3)" 문구가 나타나기까지 1~2시간이 더 걸릴 수 있다(2026-09-03 실제: 20:50 재저장 → 약 22:20 발급 절차 시작). 그 문구가 보이면 정상 진행 중이므로 손대지 않는다
 - 발급 전에는 GitHub가 `*.github.io` 인증서를 내밀어 브라우저가 `ERR_CERT_COMMON_NAME_INVALID` 경고를 띄운다. 정상 과정이다
 - 발급 상태는 저장소 Settings → Pages 화면에서 확인한다. "Enforce HTTPS" 체크박스가 활성화되면 발급 완료
 - 인증서는 Let's Encrypt가 90일 단위로 발급하고 GitHub가 자동 갱신한다. 운영자가 할 일은 없다
