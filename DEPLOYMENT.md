@@ -241,6 +241,7 @@ flowchart TD
 | 이미지 깨짐 | 파일명 대소문자 불일치 (리눅스는 구분) | 파일명과 본문 참조를 소문자로 통일 |
 | CSS 없이 깨진 화면 | baseURL 불일치 | hugo.toml의 baseURL이 `https://hugojo.com/`인지 |
 | 사이트 전체 404 | `static/CNAME` 삭제됨 | 파일 복구 후 push |
+| DNS Check in Progress가 수 시간~수일 지속 | 등록기관 네임서버 결함 (2026-09-06 확인: ns1.hosting.co.kr이 TCP/53 거부). 자동 검사기가 TCP 재질의에서 막힘 | `dig +tcp A hugojo.com @ns1.hosting.co.kr`로 재현. 해결은 DNS를 Cloudflare(무료, DNS only)로 이전 |
 | 로컬은 되는데 CI만 실패 | Hugo 버전 차이 | 워크플로 `hugo-version`을 로컬 버전으로 고정 |
 
 ### 롤백
