@@ -163,7 +163,7 @@ sequenceDiagram
     Note over GH: http 요청을 https로 자동 전환
 ```
 
-- 발급은 자동이며 DNS 전파 후 통상 1시간 이내, 최대 24시간
+- 발급은 자동이며 DNS 전파 후 통상 1시간 이내, 최대 24시간. 실제 이력: 2026-09-02 도메인 연결 → 등록기관 차단으로 5일 지연 → 2026-09-07 21:45 발급 완료(Let's Encrypt, 90일 자동 갱신)
 - **커스텀 도메인은 반드시 Settings → Pages 화면에서 Save로 등록한다.** API로만 설정하면 "DNS Check in Progress"에서 멈춰 인증서 발급이 시작되지 않는다(2026-09-03 실제 발생). 멈췄으면 Remove → 재입력 → Save로 검사를 다시 돌린다. 이후 "DNS check successful"이 떠도 인증서 요청이 큐에 들어가 "TLS certificate is being provisioned (1 of 3)" 문구가 나타나기까지 1~2시간이 더 걸릴 수 있다(2026-09-03 실제: 20:50 재저장 → 약 22:20 발급 절차 시작). 그 문구가 보이면 정상 진행 중이므로 손대지 않는다
 - 발급 전에는 GitHub가 `*.github.io` 인증서를 내밀어 브라우저가 `ERR_CERT_COMMON_NAME_INVALID` 경고를 띄운다. 정상 과정이다
 - 발급 상태는 저장소 Settings → Pages 화면에서 확인한다. "Enforce HTTPS" 체크박스가 활성화되면 발급 완료
@@ -241,7 +241,7 @@ flowchart TD
 | 이미지 깨짐 | 파일명 대소문자 불일치 (리눅스는 구분) | 파일명과 본문 참조를 소문자로 통일 |
 | CSS 없이 깨진 화면 | baseURL 불일치 | hugo.toml의 baseURL이 `https://hugojo.com/`인지 |
 | 사이트 전체 404 | `static/CNAME` 삭제됨 | 파일 복구 후 push |
-| DNS Check in Progress가 수 시간~수일 지속 | 등록기관 네임서버 결함 (2026-09-06 확인: ns1.hosting.co.kr이 TCP/53 거부). 자동 검사기가 TCP 재질의에서 막힘 | `dig +tcp A hugojo.com @ns1.hosting.co.kr`로 재현. 운영 원칙(2026-09-06 확정): DNS는 호스팅케이알 단일 관리. 다른 DNS 서비스를 추가하지 않는다(인수인계 단순화). 처방은 호스팅케이알 고객센터에 TCP 수리 요청 + 위임 네임서버에서 ns1 제외(ns2·ns3·ns4만) |
+| DNS Check in Progress가 수 시간~수일 지속 | 등록기관 네임서버가 GitHub 검증 서버의 TCP/53 질의를 거부. 2026-09-06 `dig +tcp A hugojo.com @ns1.hosting.co.kr`로 재현했고, 호스팅케이알 회신(2026-09-07, 문의 240333)으로 원인 확정: DDoS 방어로 해외 IP를 일괄 차단하던 중 GitHub도 막힘. 우리 레코드 문제가 아님 | 1) `dig +tcp`로 ns1~ns4 재현 2) 호스팅케이알 고객센터(1644-7378)에 "ns1.hosting.co.kr TCP 53 응답 거부" 문의 3) 개방 회신 후 Pages 화면에서 Remove → 재입력 → Save (API 재등록은 검사가 시작되지 않음, 2026-09-07 재확인) 4) DNS check successful 뒤 인증서는 수 분 내 발급. 운영 원칙: DNS는 호스팅케이알 단일 관리, 다른 DNS 서비스를 끼우지 않는다 |
 | 로컬은 되는데 CI만 실패 | Hugo 버전 차이 | 워크플로 `hugo-version`을 로컬 버전으로 고정 |
 
 ### 롤백

@@ -142,5 +142,5 @@ git add -A && git commit -m "post: 글 제목" && git push
 - [x] `hugo.toml`의 `baseURL` = `https://hugojo.com/` (2026-09-02)
 - [x] `static/CNAME` = `hugojo.com`
 - [x] GitHub Pages Custom domain = hugojo.com (API로 설정 완료)
-- [ ] 등록기관(호스팅케이알) DNS: apex A 레코드 4개를 GitHub Pages IP로 교체 (185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153), www는 CNAME으로 hugohsjo.github.io
-- [ ] DNS 전파 후 GitHub Pages에서 Enforce HTTPS 켜기 (인증서 자동 발급 뒤 가능)
+- [x] 등록기관(호스팅케이알) DNS: apex A 레코드 4개를 GitHub Pages IP로 교체 (185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153), www는 CNAME으로 hugohsjo.github.io (2026-09-02)
+- [x] DNS 전파 후 GitHub Pages에서 Enforce HTTPS 켜기 (2026-09-07 발급·적용 완료. 지연 원인과 처방은 [DEPLOYMENT](DEPLOYMENT.md) 장애 대응 표)
